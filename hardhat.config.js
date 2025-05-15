@@ -1,21 +1,21 @@
-require('@nomiclabs/hardhat-waffle');
-require('hardhat-gas-reporter');
-require('solidity-coverage');
-require('hardhat-contract-sizer');
+require("@nomiclabs/hardhat-waffle")
+require("hardhat-gas-reporter")
+require("solidity-coverage")
+require("hardhat-contract-sizer")
 
-task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
+task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+  const accounts = await hre.ethers.getSigners()
   for (const account of accounts) {
-    console.log(account.address);
+    console.log(account.address)
   }
-});
+})
 
 module.exports = {
   solidity: {
-    version: '0.8.28',
+    version: "0.8.28",
     settings: {
       metadata: {
-        bytecodeHash: 'none',
+        bytecodeHash: "none",
         useLiteralContent: true,
       },
       optimizer: {
@@ -28,7 +28,7 @@ module.exports = {
     hardhat: {
       chainId: 10143, // Ensure your Hardhat network runs with Monad's chain ID.
       forking: {
-        url: "https://responsive-damp-star.monad-testnet.quiknode.pro/c8cbc442818fe137541f1279eb560d40980e0c5c",
+        url: "https://testnet-rpc.monad.xyz",
         // blockNumber: 11389636, // Adjust to a block number that makes sense for your use case.
       },
       // Custom chain parameters for Monad Testnet:
@@ -47,15 +47,15 @@ module.exports = {
     },
   },
   paths: {
-    artifacts: './artifacts',
-    cache: './cache',
-    sources: './contracts',
-    tests: './test',
+    artifacts: "./artifacts",
+    cache: "./cache",
+    sources: "./contracts",
+    tests: "./test",
   },
   sourcify: {
     enabled: true,
-    apiUrl: 'https://sourcify-api-monad.blockvision.org',
-    browserUrl: 'https://testnet.monadexplorer.com',
+    apiUrl: "https://sourcify-api-monad.blockvision.org",
+    browserUrl: "https://testnet.monadexplorer.com",
   },
   contractSizer: {
     alphaSort: true,
@@ -67,6 +67,6 @@ module.exports = {
     enabled: false,
   },
   mocha: {
-    timeout: 100000000
+    timeout: 100000000,
   },
-};
+}
