@@ -1,0 +1,1358 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\AFiUniswapOracle.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> AFiUniswapOracle.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/105</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/91</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: BUSL-1.1
+pragma solidity =0.8.0;
+pragma abicoder v2;
+&nbsp;
+import "./libraries/OracleLibrary.sol";
+import "./interface/IUniswapV3Factory.sol";
+import "./interface/IAFi.sol";
+// import "@uniswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
+// import "@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol";
+&nbsp;
+/// @dev This is only meant to be used by price providers, which use a different
+/// Solidity version than the rest of the codebase. This way de won't need to include
+/// an additional version of OpenZeppelin's library.
+interface IERC20Like {
+    function decimals() external view returns (uint8);
+&nbsp;
+    function balanceOf(address) external view returns (uint256);
+}
+&nbsp;
+&nbsp;
+/// @title UniswapV3PriceProvider
+/// @notice Price provider contract that reads prices from UniswapV3
+contract UniswapV3PriceProvider  {
+    struct PriceCalculationData {
+        // Number of seconds for which time-weighted average should be calculated, ie. 1800 means 30 min
+        uint32 periodForAvgPrice;
+&nbsp;
+        // Estimated blockchain block time
+        uint8 blockTime;
+    }
+&nbsp;
+    bytes32 private constant _OLD_ERROR_HASH = keccak256(abi.encodeWithSignature("Error(string)", "OLD"));
+&nbsp;
+    /// @dev this is basically `PriceProvider.WETH.decimals()`
+    uint256 private immutable _QUOTE_TOKEN_DECIMALS; // solhint-disable-line var-name-mixedcase
+&nbsp;
+    /// @dev block time is used to estimate the average number of blocks minted in `periodForAvgPrice`
+    /// block time tends to go down (not up), temporary deviations are not important
+    /// Ethereum's block time is almost never higher than ~15 sec, so in practice we shouldn't need to set it above that
+    /// 60 was chosen as an arbitrary maximum just to prevent human errors
+    uint256 private constant _MAX_ACCEPTED_BLOCK_TIME = 60;
+&nbsp;
+    /// @dev UniswapV3 factory contract
+    IUniswapV3Factory public immutable uniswapV3Factory;
+&nbsp;
+    address public immutable  WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+&nbsp;
+    /// @dev priceCalculationData:
+    /// - periodForAvgPrice: Number of seconds for which time-weighted average should be calculated, ie. 1800 is 30 min
+    /// - blockTime: Estimated blockchain block time
+    PriceCalculationData public priceCalculationData;
+&nbsp;
+    /// @notice Maps asset address to UniV3 pool
+    mapping(address =&gt; IUniswapV3Pool) public pools;
+&nbsp;
+    /// @notice Emitted when TWAP period changes
+    /// @param period new period in seconds, ie. 1800 means 30 min
+    event NewPeriod(uint32 period);
+&nbsp;
+    /// @notice Emitted when blockTime changes
+    /// @param blockTime block time in seconds
+    event NewBlockTime(uint8 blockTime);
+&nbsp;
+    /// @notice Emitted when UniV3 pool is set for asset
+    /// @param asset asset address
+    /// @param pool UniV3 pool address
+    event PoolForAsset(address indexed asset, IUniswapV3Pool indexed pool);
+&nbsp;
+    /// @param _factory UniswapV3 factory contract
+    /// @param _priceCalculationData:
+    /// - _periodForAvgPrice period in seconds for TWAP price, ie. 1800 means 30 min
+    /// - _blockTime estimated block time, it is better to set it bit lower than higher that avg block time
+    ///   eg. if ETH block time is 13~13.5s, you can set it to 12s
+<span class="fstat-no" title="function not covered" >    constructor(</span>
+        IUniswapV3Factory _factory,
+        PriceCalculationData memory _priceCalculationData
+    ) {
+<span class="cstat-no" title="statement not covered" >        uint24 defaultFee = 500;</span>
+        // Ping for _priceProvidersRepository is not needed here, because PriceProvider does it
+<span class="cstat-no" title="statement not covered" >        if (_factory.feeAmountTickSpacing(defaultFee) == 0) <span class="cstat-no" title="statement not covered" >revert("InvalidFactory")</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (_priceCalculationData.periodForAvgPrice == 0) <span class="cstat-no" title="statement not covered" >revert("InvalidPeriodForAvgPrice")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (</span>
+            _priceCalculationData.blockTime == 0 || _priceCalculationData.blockTime &gt;= _MAX_ACCEPTED_BLOCK_TIME
+        ) {
+<span class="cstat-no" title="statement not covered" >            revert("InvalidBlockTime")</span>;
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _validatePriceCalculationData(</span>
+            _priceCalculationData.periodForAvgPrice,
+            _priceCalculationData.blockTime
+        );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uniswapV3Factory = _factory</span>;
+<span class="cstat-no" title="statement not covered" >        priceCalculationData = _priceCalculationData</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _QUOTE_TOKEN_DECIMALS = 18</span>;
+    }
+&nbsp;
+    /// @notice Setup pool for asset. Use it also for update, when you want to change pool for asset.
+    /// Notice: pool must be ready for providing price. See `adjustOracleCardinality`.
+    /// @param _asset asset address
+    /// @param _pool UniV3 pool address
+<span class="fstat-no" title="function not covered" >    function setupAsset(address _asset,IUniswapV3Pool _pool) external  {</span>
+<span class="cstat-no" title="statement not covered" >        verifyPool(_asset, _pool)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        pools[_asset] = _pool</span>;
+<span class="cstat-no" title="statement not covered" >        emit PoolForAsset(_asset, _pool);</span>
+        //uint256 baseAmount = 10 ** decimals;
+&nbsp;
+        // make sure getPrice does not revert
+<span class="cstat-no" title="statement not covered" >        getPrice(_asset, 10**18)</span>;
+    }
+&nbsp;
+    /// @notice Change period for which to calculated TWAP prices
+    /// @dev WARNING: when we increase this period, then UniV3 pool that is already initialized
+    /// and set as oracle for asset, will not immediately adjust to new time window.
+    /// We need to call `adjustOracleCardinality` and then wait for buffer to filled up.
+    /// Until that happen, TWAP price will be fetched for shorter period (because of time window adjustment feature).
+    /// @param _period new period in seconds, ie. 1800 means 30 min
+<span class="fstat-no" title="function not covered" >    function changePeriodForAvgPrice(uint32 _period) external  {</span>
+        // `_period &lt; block.timestamp` is because we making sure we do not underflow
+<span class="cstat-no" title="statement not covered" >        if (_period == 0 || _period &gt;= block.timestamp) <span class="cstat-no" title="statement not covered" >revert("InvalidPeriodForAvgPrice")</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (priceCalculationData.periodForAvgPrice == _period) <span class="cstat-no" title="statement not covered" >revert("PeriodForAvgPriceDidNotChange")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _validatePriceCalculationData(_period, priceCalculationData.blockTime)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        priceCalculationData.periodForAvgPrice = _period</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        emit NewPeriod(_period);</span>
+    }
+&nbsp;
+    /// @notice Change block time which is used to adjust oracle cardinality fot providing TWAP prices
+    /// @param _blockTime it is better to set it bit lower than higher that avg block time
+    /// eg. if ETH block time is 13~13.5s, you can set it to 11-12s
+    /// based on `priceCalculationData.periodForAvgPrice` and `priceCalculationData.blockTime` price provider calculates
+    /// number of blocks for (cardinality) requires for TWAP price. Unfortunately block time can change and this
+    /// can lead to issues with getting price. Edge case will be when we set `_blockTime` to 1, then we have 100%
+    /// guarantee, that no matter how real block time changes, we always can get price.
+    /// Downside will be cost of initialization. That's why it is better to set a bit lower
+    /// and adjust (decrease) in case of issues.
+<span class="fstat-no" title="function not covered" >    function changeBlockTime(uint8 _blockTime) external  {</span>
+<span class="cstat-no" title="statement not covered" >        if (_blockTime == 0 || _blockTime &gt;= _MAX_ACCEPTED_BLOCK_TIME) <span class="cstat-no" title="statement not covered" >revert("InvalidBlockTime")</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (priceCalculationData.blockTime == _blockTime) <span class="cstat-no" title="statement not covered" >revert("BlockTimeDidNotChange")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _validatePriceCalculationData(priceCalculationData.periodForAvgPrice, _blockTime)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        priceCalculationData.blockTime = _blockTime</span>;
+<span class="cstat-no" title="statement not covered" >        emit NewBlockTime(_blockTime);</span>
+    }
+&nbsp;
+    /// @notice Adjust UniV3 pool cardinality to Silo's requirements.
+    /// Call `observationsStatus` to see, if you need to execute this method.
+    /// This method prepares pool for setup for price provider. In order to run `setupAsset` for asset,
+    /// pool must have buffer to provide TWAP price. By calling this adjustment (and waiting necessary amount of time)
+    /// pool will be ready for setup. It will collect valid number of observations, so the pool can be used
+    /// once price data is ready.
+    /// @dev Increases observation cardinality for univ3 oracle pool if needed, see getPrice desc for details.
+    /// We should call it on init and when we are changing the pool (univ3 can have multiple pools for the same tokens)
+    /// @param _pool UniV3 pool address
+<span class="fstat-no" title="function not covered" >    function adjustOracleCardinality(IUniswapV3Pool _pool) external {</span>
+<span class="cstat-no" title="statement not covered" >        (,,,, uint16 cardinalityNext,,) = _pool.slot0();</span>
+<span class="cstat-no" title="statement not covered" >        PriceCalculationData memory data = priceCalculationData;</span>
+&nbsp;
+        // ideally we want to have data at every block during periodForAvgPrice
+        // If we want to get TWAP for 5 minutes and assuming we have tx in every block, and block time is 15 sec,
+        // then for 5 minutes we will have 20 blocks, that means our requiredCardinality is 20.
+<span class="cstat-no" title="statement not covered" >        uint256 requiredCardinality = data.periodForAvgPrice / data.blockTime;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (cardinalityNext &gt;= requiredCardinality) <span class="cstat-no" title="statement not covered" >revert("NotNecessary")</span>;</span>
+&nbsp;
+        // initialize required amount of slots, it will cost!
+<span class="cstat-no" title="statement not covered" >        _pool.increaseObservationCardinalityNext(uint16(requiredCardinality))</span>;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function assetSupported(address _asset) external view  returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        return address(pools[_asset]) != address(0) || _asset == WETH;</span>
+    }
+&nbsp;
+    /// @notice This method can provide TWAP quote token price denominated in any other token
+    /// it does NOT validate input pool, so you must be sure you providing correct one
+    /// otherwise result will be wrong or function will throw.
+    /// If pool is correct and it still throwing, please check `observationsStatus(_pool)`.
+<span class="fstat-no" title="function not covered" >    function quotePrice(IAFi aFiContract,address _tokenIn, address _depositToken, uint256 _amount) public view returns (uint256 price) {</span>
+<span class="cstat-no" title="statement not covered" >        IUniswapV3Pool  _pool = IUniswapV3Pool(aFiContract.getPool(_tokenIn, WETH));</span>
+<span class="cstat-no" title="statement not covered" >        IUniswapV3Pool  depositTokenPool = IUniswapV3Pool(aFiContract.getPool(_depositToken, WETH));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        address quote = WETH;</span>
+<span class="cstat-no" title="statement not covered" >        uint256 multiplier = 1e6;</span>
+<span class="cstat-no" title="statement not covered" >        address token0 = _pool.token0();</span>
+<span class="cstat-no" title="statement not covered" >        address base = quote == token0 ? _pool.token1() : token0;</span>
+<span class="cstat-no" title="statement not covered" >        uint128 quoteAmount = uint128(10 ** _QUOTE_TOKEN_DECIMALS);</span>
+        // 1 - getPriceUniswapOracle underlying token price in usdc
+        // 2 - getMinimumAmountOut input token - underlying , underlying to output token 
+<span class="cstat-no" title="statement not covered" >        int24 timeWeightedAverageTick = _consult(_pool);</span>
+<span class="cstat-no" title="statement not covered" >        price = OracleLibrary.getQuoteAtTick(timeWeightedAverageTick, quoteAmount, quote, base)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        timeWeightedAverageTick = _consult(IUniswapV3Pool(depositTokenPool))</span>;
+<span class="cstat-no" title="statement not covered" >        uint256 depositTokenPrice = OracleLibrary.getQuoteAtTick(timeWeightedAverageTick, quoteAmount, quote, _depositToken);</span>
+&nbsp;
+        
+<span class="cstat-no" title="statement not covered" >        uint256 decimals = IERC20Like(_tokenIn).decimals();</span>
+<span class="cstat-no" title="statement not covered" >        require(decimals &lt;= 38, "power overflow")</span>; // we need 10**decimals be less than 2**128
+&nbsp;
+        // //uint256 baseAmount = 10 ** decimals;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        price = (_amount * depositTokenPrice * 10**decimals * multiplier)/ (price * 1e6)</span>;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function assetOldestTimestamp(address _asset) external view returns (uint32 oldestTimestamp) {</span>
+<span class="cstat-no" title="statement not covered" >        IUniswapV3Pool pool = pools[_asset];</span>
+<span class="cstat-no" title="statement not covered" >        (,, uint16 observationIndex, uint16 currentObservationCardinality,,,) = pool.slot0();</span>
+<span class="cstat-no" title="statement not covered" >        oldestTimestamp = resolveOldestObservationTimestamp(pool, observationIndex, currentObservationCardinality)</span>;
+    }
+&nbsp;
+    /// @notice Check if UniV3 pool has enough cardinality to meet Silo's requirements
+    /// If it does not have, please execute `adjustOracleCardinality`.
+    /// @param _pool UniV3 pool address
+    /// @return bufferFull TRUE if buffer is ready to provide TWAP price rof required period
+    /// @return enoughObservations TRUE if buffer has enough observations spots (they don't have to be filled up yet)
+<span class="fstat-no" title="function not covered" >    function observationsStatus(IUniswapV3Pool _pool)</span>
+        public
+        view
+        returns (
+            bool bufferFull,
+            bool enoughObservations,
+            uint16 currentCardinality
+        )
+    {
+<span class="cstat-no" title="statement not covered" >        PriceCalculationData memory data = priceCalculationData;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (</span>
+            ,,, uint16 currentObservationCardinality,
+            uint16 observationCardinalityNext,,
+        ) = _pool.slot0();
+&nbsp;
+        // ideally we want to have data at every block during periodForAvgPrice
+<span class="cstat-no" title="statement not covered" >        uint256 requiredCardinality = data.periodForAvgPrice / data.blockTime;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        bufferFull = currentObservationCardinality &gt;= requiredCardinality</span>;
+<span class="cstat-no" title="statement not covered" >        enoughObservations = observationCardinalityNext &gt;= requiredCardinality</span>;
+<span class="cstat-no" title="statement not covered" >        currentCardinality = currentObservationCardinality</span>;
+     }
+&nbsp;
+    /// @dev It verifies, if provider pool for asset (and quote token) is valid.
+    /// Throws when there is no pool or pool is empty (zero liquidity) or not ready for price
+    /// @param _asset asset for which prices are going to be calculated
+    /// @param _pool UniV3 pool address
+    /// @return true if verification successful, otherwise throws
+<span class="fstat-no" title="function not covered" >    function verifyPool(address _asset, IUniswapV3Pool _pool) public view returns (bool) {</span>
+<span class="cstat-no" title="statement not covered" >        if (_asset == address(0)) <span class="cstat-no" title="statement not covered" >revert("AssetIsZero")</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (address(_pool) == address(0)) <span class="cstat-no" title="statement not covered" >revert("PoolIsZero")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        address quote = WETH;</span>
+<span class="cstat-no" title="statement not covered" >        uint24 fee = _pool.fee();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (uniswapV3Factory.getPool(_asset, quote, fee) != address(_pool)) <span class="cstat-no" title="statement not covered" >revert("InvalidPoolForAsset")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        uint256 liquidity = IERC20Like(quote).balanceOf(address(_pool));</span>
+<span class="cstat-no" title="statement not covered" >        if (liquidity == 0) <span class="cstat-no" title="statement not covered" >revert("EmptyPool")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (bool bufferFull,,) = observationsStatus(_pool);</span>
+<span class="cstat-no" title="statement not covered" >        if (!bufferFull) <span class="cstat-no" title="statement not covered" >revert("BufferNotFull")</span>;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return true;</span>
+    }
+&nbsp;
+    /// UniV3 saves price only on mint burn and swap.
+    /// Mint and burn will write observation only when "current tick is inside the passed range" of ticks.
+    /// I think that means, that if we minting/burning outside ticks range  (so outside current price)
+    /// it will not modify observation. So we left with swap.
+    ///
+    /// Swap will write observation under this condition:
+    ///     // update tick and write an oracle entry if the tick change
+    ///     if (state.tick != slot0Start.tick) {
+    /// that means, it is possible that price will be up to date (in a range of same tick)
+    /// but observation timestamp will be old.
+    ///
+    /// Every pool by default comes with just one slot for observation (cardinality == 1).
+    /// We can increase number of slots so TWAP price will be "better".
+    /// When we increase, we have to wait until new tx will write new observation.
+    /// Based on all above, we can tell how old is observation, but this does not mean the price is wrong.
+    /// UniV3 recommends to use `observe` and `OracleLibrary.consult` uses it.
+    /// `observe` reverts if `secondsAgo` &gt; oldest observation, means, if there is any price observation in selected
+    /// time frame, it will revert. Otherwise it will return either exact TWAP price or by interpolation.
+    ///
+    /// Conclusion: we can choose how many observation pool will be storing, but we need to remember,
+    /// not all of them might be used to provide our price. Final question is: how many observations we need?
+    ///
+    /// How UniV3 calculates TWAP
+    /// we ask for TWAP on time range ago:now using `OracleLibrary.consult`, it is all about find the right tick
+    /// - we call `IUniswapV3Pool(pool).observe(secondAgo)` that returns two accumulator values (for ago and now)
+    /// - each observation is resolved by `observeSingle`
+    ///   - for _now_ we just using latest observation, and if it does not match timestamp, we interpolate (!)
+    ///     and this is how we got the _tickCumulative_, so in extreme situation, if last observation was made day ago,
+    ///     UniV3 will interpolate to reflect _tickCumulative_ at current time
+    ///   - for _ago_ we search for observation using `getSurroundingObservations` that give us
+    ///     before and after observation, base on which we calculate "avg" and we have target _tickCumulative_
+    ///     - getSurroundingObservations: it's job is to find 2 observations based on which we calculate tickCumulative
+    ///       here is where all calculations can revert, if ago &lt; oldest observation, otherwise it will be calculated
+    ///       either by interpolation or we will have exact match
+    /// - now with both _tickCumulative_s we calculating TWAP
+    ///
+    /// recommended observations are = 30 min / blockTime
+<span class="fstat-no" title="function not covered" >    function getPrice(address _asset, uint256 _amount) public view  returns (uint256 price) {</span>
+        // address quote = WETH;
+       
+        // if (_asset == quote) {
+        //     return 10 ** _QUOTE_TOKEN_DECIMALS;
+        // }
+&nbsp;
+        // uint256 decimals = IERC20Like(_asset).decimals();
+        // require(decimals &lt;= 38, "power overflow"); // we need 10**decimals be less than 2**128
+&nbsp;
+        // //uint256 baseAmount = 10 ** decimals;
+        // IUniswapV3Pool pool = pools[_asset];
+        // if (address(pool) == address(0)) revert("PoolNotSet");
+&nbsp;
+        // (uint256 poolPrice,uint256 wethusdcPrice) = quotePrice(pool);
+&nbsp;
+        // price = (_amount * wethusdcPrice * decimals * multiplier)/ (poolPrice * 1e6);
+&nbsp;
+        // int24 timeWeightedAverageTick = _consult(pool);
+        // price = OracleLibrary.getQuoteAtTick(timeWeightedAverageTick, uint128(_amount), _asset, quote);
+    }
+&nbsp;
+    /// @param _pool uniswap V3 pool address
+    /// @param _currentObservationIndex the most-recently updated index of the observations array
+    /// @param _currentObservationCardinality the current maximum number of observations that are being stored
+    /// @return oldestTimestamp last observation timestamp
+<span class="fstat-no" title="function not covered" >    function resolveOldestObservationTimestamp(</span>
+        IUniswapV3Pool _pool,
+        uint16 _currentObservationIndex,
+        uint16 _currentObservationCardinality
+    )
+        public
+        view
+        returns (uint32 oldestTimestamp)
+    {
+<span class="cstat-no" title="statement not covered" >        bool initialized;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (</span>
+            oldestTimestamp,,,
+            initialized
+        ) = _pool.observations((_currentObservationIndex + 1) % _currentObservationCardinality);
+&nbsp;
+        // if not initialized, we just check id#0 as this will be the oldest
+<span class="cstat-no" title="statement not covered" >        if (!initialized) {</span>
+<span class="cstat-no" title="statement not covered" >            (oldestTimestamp,,,) = _pool.observations(0)</span>;
+        }
+    }
+&nbsp;
+    /// @notice Fetches time-weighted average tick using Uniswap V3 oracle
+    /// @dev this is based on `OracleLibrary.consult`, we adjusted it to handle `OLD` error, time window will adjust
+    /// to available pool observations
+    /// @param _pool Address of Uniswap V3 pool that we want to observe
+    /// @return timeWeightedAverageTick time-weighted average tick from (block.timestamp - period) to block.timestamp
+<span class="fstat-no" title="function not covered" >    function _consult(IUniswapV3Pool _pool) internal view returns (int24 timeWeightedAverageTick) {</span>
+<span class="cstat-no" title="statement not covered" >        (uint32 period, int56[] memory tickCumulatives) = _calculatePeriodAndTicks(_pool);</span>
+<span class="cstat-no" title="statement not covered" >        int56 tickCumulativesDelta = tickCumulatives[1] - tickCumulatives[0];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        timeWeightedAverageTick = int24(tickCumulativesDelta / period)</span>;
+&nbsp;
+        // Always round to negative infinity
+<span class="cstat-no" title="statement not covered" >        if (tickCumulativesDelta &lt; 0 &amp;&amp; (tickCumulativesDelta % period != 0)) timeWeightedAverageTick--;</span>
+    }
+&nbsp;
+    /// @param _pool Address of Uniswap V3 pool
+    /// @return period Number of seconds in the past to start calculating time-weighted average
+    /// @return tickCumulatives Cumulative tick values as of each secondsAgos from the current block timestamp
+<span class="fstat-no" title="function not covered" >    function _calculatePeriodAndTicks(IUniswapV3Pool _pool)</span>
+        internal
+        view
+        returns (uint32 period, int56[] memory tickCumulatives)
+    {
+<span class="cstat-no" title="statement not covered" >        period = priceCalculationData.periodForAvgPrice</span>;
+<span class="cstat-no" title="statement not covered" >        bool old;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        (tickCumulatives, old) = _observe(_pool, period)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (old) {</span>
+<span class="cstat-no" title="statement not covered" >            (,, uint16 observationIndex, uint16 currentObservationCardinality,,,) = _pool.slot0();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            uint32 latestTimestamp =</span>
+                resolveOldestObservationTimestamp(_pool, observationIndex, currentObservationCardinality);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            period = uint32(block.timestamp - latestTimestamp)</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            (tickCumulatives, old) = _observe(_pool, period)</span>;
+<span class="cstat-no" title="statement not covered" >            if (old) <span class="cstat-no" title="statement not covered" >revert("STILL OLD")</span>;</span>
+        }
+    }
+&nbsp;
+    /// @param _pool UniV3 pool address
+    /// @param _period Number of seconds in the past to start calculating time-weighted average
+<span class="fstat-no" title="function not covered" >    function _observe(IUniswapV3Pool _pool, uint32 _period)</span>
+        internal
+        view
+        returns (int56[] memory tickCumulatives, bool old)
+    {
+<span class="cstat-no" title="statement not covered" >        uint32[] memory secondAgos = new uint32[](2);</span>
+<span class="cstat-no" title="statement not covered" >        secondAgos[0] = _period</span>;
+        // secondAgos[1] = 0; // default is 0
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        try _pool.observe(secondAgos)</span>
+            returns (int56[] memory ticks, uint160[] memory)
+        {
+<span class="cstat-no" title="statement not covered" >            tickCumulatives = ticks</span>;
+<span class="cstat-no" title="statement not covered" >            old = false</span>;
+        }
+        catch (bytes memory reason) {
+<span class="cstat-no" title="statement not covered" >            if (keccak256(reason) != _OLD_ERROR_HASH) <span class="cstat-no" title="statement not covered" >_revertBytes(reason, "_observe")</span>;</span>
+<span class="cstat-no" title="statement not covered" >            old = true</span>;
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _revertBytes(bytes memory _errMsg, string memory _customErr) internal pure {</span>
+<span class="cstat-no" title="statement not covered" >        if (_errMsg.length &gt; 0) {</span>
+            assembly { // solhint-disable-line no-inline-assembly
+                revert(add(32, _errMsg), mload(_errMsg))
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        revert(_customErr)</span>;
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _validatePriceCalculationData(uint32 _periodForAvgPrice, uint8 _blockTime) private pure {</span>
+<span class="cstat-no" title="statement not covered" >        uint256 requiredCardinality = _periodForAvgPrice / _blockTime;</span>
+<span class="cstat-no" title="statement not covered" >        if (requiredCardinality &gt; type(uint16).max) <span class="cstat-no" title="statement not covered" >revert("InvalidRequiredCardinality")</span>;</span>
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Nov 21 2023 15:27:30 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

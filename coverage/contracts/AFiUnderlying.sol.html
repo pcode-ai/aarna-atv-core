@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\AFiUnderlying.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> AFiUnderlying.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/0</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// // SPDX-License-Identifier: Unlicensed
+// pragma solidity =0.8.0;
+&nbsp;
+// import {SafeMath} from "@openzeppelin/contracts/utils/math/SafeMath.sol";
+// import {IAFiStorage} from "./interface/IAFiStorage.sol";
+// import {ReentrancyGuard} from "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+// import "./libraries/TransferHelper.sol";
+// import "./interface/IAFiUnderlyingDetails.sol";
+// import "./libraries/ArrayUtils.sol";
+&nbsp;
+&nbsp;
+// contract AFiUnderlyingDetails is ReentrancyGuard,IAFiUnderlyingDetails {
+&nbsp;
+//     using SafeMath for uint;
+//     using ArrayUtils for uint[];
+//     using ArrayUtils for address[];
+&nbsp;
+//     address[] internal uTokens;
+//     uint[] internal uTokenProportions;
+//     uint[] internal defaultProportion;
+//     mapping(address =&gt; bool) internal underlyingExists; // compound address for various u tokens
+&nbsp;
+&nbsp;
+//     address aFiManager;
+//     address aFiRebal;
+//     address UNISWAP_EXCHANGE = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+&nbsp;
+//     IAFiStorage internal aFiStorage;
+&nbsp;
+//     modifier onlySpecificAddress(address _addr) {
+//         require(msg.sender == _addr); //solhint-disable-line reason-string
+//         _;
+//     }
+    
+//     constructor(address _aFiRebal,address _aFiManager,IAFiStorage _aStorage,address[] memory _uTokens,uint256[] memory _uTokenProportions){
+        
+//         aFiManager = _aFiManager;
+//         aFiStorage = _aStorage;
+//         aFiRebal = _aFiRebal;
+//         for(uint256 i = 0 ; i &lt; _uTokens.length; i++){
+//              if(_uTokens[i] != address(0) &amp;&amp; _uTokenProportions[i] != 0){
+//                 uTokens[i] = _uTokens[i];
+//                 uTokenProportions[i] = _uTokenProportions[i];
+//              }   
+        
+//         }
+&nbsp;
+//     }
+&nbsp;
+//     function addUnderlying(
+//         address uToken,
+//         bool old,
+//         address aFiContract
+//         ) external override onlySpecificAddress(aFiManager) {
+//         if (old) {
+//           underlyingExists[uToken] = false;
+//         } else {
+//           uTokens.push(uToken);
+//           underlyingExists[uToken] = true;
+//           uint256 newProp = (aFiStorage.calcPoolValue(uToken,aFiContract).mul(100)).div(
+//             aFiStorage.calculatePoolInUsd(aFiContract)
+//           );
+//           uTokenProportions.push(newProp);
+//           TransferHelper.safeApprove(uToken, address(UNISWAP_EXCHANGE), ~uint(0));
+//           defaultProportion.push(newProp);
+//         }
+//     }
+&nbsp;
+&nbsp;
+//     function updateProportion(address aFiContract)
+//     external
+//     override
+//     returns (uint[] memory uTokensProportions)
+//         {
+//             require(msg.sender == aFiManager || msg.sender == address(aFiRebal));
+//             uint256 uTokenLen = uTokens.length;
+//             //Update Proportions
+//             unchecked {
+//             for (uint j = 0; j &lt; uTokenLen; j++) {
+//                 uTokenProportions[j] = (
+//                 aFiStorage.calcPoolValue(uTokens[j], aFiContract).mul(100)
+//                 ).div(aFiStorage.calculatePoolInUsd(aFiContract));
+//                 defaultProportion[j] = uTokenProportions[j];
+//             }
+//             }
+//             return uTokenProportions;
+//     }
+&nbsp;
+//     function removeIndex(
+//         uint uTokenToRemoveIndex
+//     ) external override nonReentrant onlySpecificAddress(aFiManager) {
+//         //To avoid stack too deep error
+//         uTokens.sPopAddress(uTokenToRemoveIndex);
+//         uTokenProportions.sPopUint256(uTokenToRemoveIndex);
+//         defaultProportion.sPopUint256(uTokenToRemoveIndex);
+&nbsp;
+//         // emit RemoveIndex(address(this));
+//     }
+&nbsp;
+//     function checkIfUTokenExist(address uTok) external view override returns (bool) {
+//         return underlyingExists[uTok];
+//     }
+&nbsp;
+//     function getUnderlyingData() public view returns(uint[] memory,uint[] memory,address[] memory){
+//         return(uTokenProportions,defaultProportion,uTokens);
+//     }
+&nbsp;
+&nbsp;
+// }</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 24 2023 15:04:25 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
